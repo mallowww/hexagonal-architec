@@ -2,6 +2,7 @@ package main
 
 import (
 	"bank/repository"
+	"bank/service"
 	"fmt"
 	"os"
 
@@ -17,20 +18,11 @@ func main() {
 	}
 
 	customerRepository := repository.NewCustomerRepositoryDB(db)
+	customerService := service.NewCustomerService(customerRepository)
 
-	_ = customerRepository
-
-	customer, err := customerRepository.GetById(2000)
+	customers, err := customerService.GetCustomer(2000)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(customer)
-
-
-	// customers, err := customerRepository.GetAll()
-	// if err != nil {
-	// 	panic(err)
-	// }
-
-	// fmt.Println(customers)
+	fmt.Println(customers)
 }
