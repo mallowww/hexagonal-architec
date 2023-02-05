@@ -21,7 +21,7 @@ func (s customerService) GetCustomers() ([]CustomerResponse, error) {
 	if err != nil {
 		log.Println(err)
 		logs.Error(err)
-		return nil, err
+		return nil, errs.NewUnexpectedError()
 	}
 
 	custResponses := []CustomerResponse{}
